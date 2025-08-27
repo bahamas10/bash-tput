@@ -93,8 +93,8 @@ tput() {
 		blink) echo -n "$ESC[5m";;
 		setaf | AF) echo -n "$ESC[38;5;$2m";;
 		setab | AB) echo -n "$ESC[48;5;$2m";;
-		sc) echo -n "$ESC[7";;
-		rc) echo -n "$ESC[8";;
+		sc) echo -n "${ESC}7";;
+		rc) echo -n "${ESC}8";;
 		cnorm) echo -n "$ESC[?25h";;
 		civis) echo -n "$ESC[?25l";;
 		smcup) echo -n "$ESC[?1049h";;
