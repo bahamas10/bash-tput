@@ -113,6 +113,6 @@ tput() {
 	esac
 }
 
-if !(return 2>/dev/null); then
+if ! (return 2>/dev/null); then
 	tput "$@"
 fi
