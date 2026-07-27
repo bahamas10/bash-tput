@@ -71,7 +71,7 @@
 
 # `tput` wrapper - taken from https://github.com/bahamas10/bash-tput
 tput() {
-	local VERSION='bash tput (1.0.0)'
+	local VERSION='bash tput (1.0.1)'
 
 	local opt OPTIND OPTARG
 	while getopts 'ST:V' opt; do
