@@ -106,8 +106,24 @@ tput() {
 		cuf) echo -n "$ESC[$2C";;
 		cub) echo -n "$ESC[$2D";;
 		cup)
-			local row=$(($2 + 1))
-			local col=$(($3 + 1))
+			local row=${2:-0}
+			local col=${3:-0}
+
+			# validate user input is a positive integer (or 0)
+			# before processing, see:
+			# https://github.com/bahamas10/bash-tput/issues/2
+			#
+			# a user can still give us a *very large* number, in
+			# which case we will overflow when doing `++` but that
+			# seems fine and matches the `tput` command in my
+			# testing.
+			local num_re='^[0-9]+$'
+			[[ $row =~ $num_re ]] || row=0
+			[[ $col =~ $num_re ]] || col=0
+
+			# tput is off-by-one
+			((row++, col++))
+
 			echo -n "$ESC[$row;${col}H";;
 		*) command tput "$@"; return $?;;
 	esac
